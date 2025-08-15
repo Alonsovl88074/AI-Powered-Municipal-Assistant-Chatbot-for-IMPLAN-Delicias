@@ -1,0 +1,2 @@
+# AI-Powered-Municipal-Assistant-Chatbot-for-IMPLAN-Delicias
+This repository documents the development of an intelligent virtual assistant for the Municipal Planning Institute (IMPLAN) of Delicias, Chihuahua. This project is more than a chatbot; it is a full-fledged Business Intelligence solution designed to automate public information access, enhance citizen engagement, and optimize internal resources.

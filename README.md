@@ -10,7 +10,7 @@ This repository contains the source code and documentation for an intelligent vi
   <img src="Inicio-IMPLAN-Personal_-Microsoft_-Edge-2025-08-15-15-20-35.gif" alt="Chatbot Demo GIF" width="80%"/>
 </p>
 
-> *A live demonstration of the chatbot in action on the official IMPLAN website.*
+> *A live demonstration of the chatbot in action on the official IMPLAN website. For try the ChatBot visit [(http://implandeliciaschih.ddns.net/)]*
 
 ---
 

@@ -109,6 +109,38 @@ def chat():
 if __name__ == '__main__':
     # Listens on all available network interfaces
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+# The system prompt instructs the AI on its personality and constraints
+system_prompt = f"""
+Eres un asistente virtual amable y servicial del IMPLAN de Delicias, Chihuahua.
+Tu nombre es 'Planito'. Responde únicamente basándote en la siguiente información:
+{knowledge_base_json}
+"""
+
+model = genai.GenerativeModel(model_name="gemini-2.5-pro")
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.get_json()
+        user_question = data.get("question")
+
+        if not user_question:
+            return jsonify({"error": "No question provided."}), 400
+        
+        # Start a chat session with the system instructions and user's query
+        convo = model.start_chat(history=[...]) # History includes the system_prompt
+        convo.send_message(user_question)
+        
+        return jsonify({"answer": convo.last.text})
+
+    except Exception as e:
+        print(f"Error in /chat endpoint: {e}")
+        return jsonify({"error": "Internal server error."}), 500
+
+if __name__ == '__main__':
+    # Listens on all available network interfaces
+    app.run(host='10.10.5.0', port=5000, debug=True)
 </details>
 
 ## 3. Frontend Implementation

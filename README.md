@@ -182,4 +182,4 @@ This chatbot is a tangible example of how technology, when applied with a Busine
 I am proud of the result and eager to apply these skills to new and complex challenges.
 Feel free to reach out if you'd like to learn more about this project or discuss potential collaborations.
 
-LinkedIn: [](https://www.linkedin.com/in/alonso-villalobos-lara-7297641b/)]
+LinkedIn: [https://www.linkedin.com/in/alonso-villalobos-lara-7297641b/](https://www.linkedin.com/in/alonso-villalobos-lara-7297641b/)]

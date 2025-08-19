@@ -32,18 +32,18 @@ graph TD
     C -- "Generated Response" --> B;
     B -- "Formatted Answer (JSON)" --> A;
     
-## Frontend (UI): A clean, responsive chat interface built with HTML5, CSS3, and Vanilla JavaScript. Asynchronous communication with the backend is handled via the Fetch API, ensuring a seamless user experience.
-## Backend (Logic Core): A lightweight yet powerful microservice developed in Python with the Flask framework. This API is the operational heart, orchestrating the entire request-response cycle.
-## Intelligence Layer (External API): The Google Gemini Pro model, integrated via its API. I employed a Retrieval-Augmented Generation (RAG) architecture to ensure all responses are grounded in factual, provided data, mitigating AI "hallucinations."
+**Frontend (UI):** A clean, responsive chat interface built with HTML5, CSS3, and Vanilla JavaScript. Asynchronous communication with the backend is handled via the Fetch API, ensuring a seamless user experience.
+**Backend (Logic Core):** A lightweight yet powerful microservice developed in Python with the Flask framework. This API is the operational heart, orchestrating the entire request-response cycle.
+**Intelligence Layer (External API):** The Google Gemini Pro model, integrated via its API. I employed a Retrieval-Augmented Generation (RAG) architecture to ensure all responses are grounded in factual, provided data, mitigating AI "hallucinations."
 
 ## My Role & Development Process: A Full-Stack Approach
 I managed this project end-to-end, from data engineering to final deployment, applying a wide spectrum of technical skills.
 
 1. Knowledge Base Engineering (The BI Perspective)
 The foundation of any intelligent system is its data. I executed a classic ETL process to build the chatbot's brain:
-Extract: Pulled unstructured text from the IMPLAN website, internal HTML pages, and linked PDF documents.
-Transform: Structured the extracted information into a coherent JSON format, creating a domain-specific knowledge base.
-Load: This JSON context is loaded at runtime and injected into the AI's prompt for every query.
+**Extract:** Pulled unstructured text from the IMPLAN website, internal HTML pages, and linked PDF documents.
+**Transform:** Structured the extracted information into a coherent JSON format, creating a domain-specific knowledge base.
+**Load:** This JSON context is loaded at runtime and injected into the AI's prompt for every query.
 <details>
 
 ## <summary>► Click to see an example of the structured Knowledge Base</summary>
@@ -158,13 +158,16 @@ Core Competencies & Tech Stack
 ## This project is a practical demonstration of my expertise across the full data and development lifecycle.
 
 ## Category	Technologies & Skills
-Backend Development	Python, Flask, RESTful API Design
-Frontend Development	JavaScript (ES6+), HTML5, CSS3, DOM Manipulation, Fetch API (AJAX)
-Artificial Intelligence	Google Gemini API, Prompt Engineering, Retrieval-Augmented Generation (RAG)
-Systems & Networking	Windows Server, Firewall Configuration, Port Forwarding, DDNS, SSH
-BI & Data Engineering	ETL Processes, Data Structuring (JSON), Solution Architecture, Problem Solving
+
+**Backend Development**	Python, Flask, RESTful API Design
+**Frontend Development**	JavaScript (ES6+), HTML5, CSS3, DOM Manipulation, Fetch API (AJAX)
+**Artificial Intelligence**	Google Gemini API, Prompt Engineering, Retrieval-Augmented Generation (RAG)
+**Systems & Networking**	Windows Server, Firewall Configuration, Port Forwarding, DDNS, SSH
+**BI & Data Engineering**	ETL Processes, Data Structuring (JSON), Solution Architecture, Problem Solving
 
 ## Contact
-This chatbot is a tangible example of how technology, when applied with a Business Intelligence strategy, can transform data into direct value for an organization and its community. I am proud of the result and eager to apply these skills to new and complex challenges.
+This chatbot is a tangible example of how technology, when applied with a Business Intelligence strategy, can transform data into direct value for an organization and its community. 
+I am proud of the result and eager to apply these skills to new and complex challenges.
 Feel free to reach out if you'd like to learn more about this project or discuss potential collaborations.
+
 LinkedIn: [](https://www.linkedin.com/in/alonso-villalobos-lara-7297641b/)]

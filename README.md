@@ -33,7 +33,9 @@ graph TD
     B -- "Formatted Answer (JSON)" --> A;
     
 **Frontend (UI):** A clean, responsive chat interface built with HTML5, CSS3, and Vanilla JavaScript. Asynchronous communication with the backend is handled via the Fetch API, ensuring a seamless user experience.
+
 **Backend (Logic Core):** A lightweight yet powerful microservice developed in Python with the Flask framework. This API is the operational heart, orchestrating the entire request-response cycle.
+
 **Intelligence Layer (External API):** The Google Gemini Pro model, integrated via its API. I employed a Retrieval-Augmented Generation (RAG) architecture to ensure all responses are grounded in factual, provided data, mitigating AI "hallucinations."
 
 ## My Role & Development Process: A Full-Stack Approach
@@ -41,14 +43,16 @@ I managed this project end-to-end, from data engineering to final deployment, ap
 
 1. Knowledge Base Engineering (The BI Perspective)
 The foundation of any intelligent system is its data. I executed a classic ETL process to build the chatbot's brain:
+
 **Extract:** Pulled unstructured text from the IMPLAN website, internal HTML pages, and linked PDF documents.
+
 **Transform:** Structured the extracted information into a coherent JSON format, creating a domain-specific knowledge base.
+
 **Load:** This JSON context is loaded at runtime and injected into the AI's prompt for every query.
 <details>
 
 ## <summary>► Click to see an example of the structured Knowledge Base</summary>
 code
-JSON
 {
   "about": "El Instituto Municipal de Planeación (IMPLAN) de Delicias tiene por objeto fortalecer la planeación participativa estratégica...",
   "contact": {
@@ -69,6 +73,7 @@ JSON
 ## 2. Backend & API Development
 I built the /chat endpoint using Flask, focusing on robustness and clarity. The Python logic does more than just proxy requests; it enriches the user's query with the knowledge base context, demonstrating my ability to design and build purposeful APIs.
 <details>
+  
 <summary>► Click to see a snippet of the Flask backend code</summary>
 code
 Python
@@ -85,7 +90,6 @@ Eres un asistente virtual amable y servicial del IMPLAN de Delicias, Chihuahua.
 Tu nombre es 'Planito'. Responde únicamente basándote en la siguiente información:
 {knowledge_base_json}
 """
-
 model = genai.GenerativeModel(model_name="gemini-2.5-pro")
 
 @app.route('/chat', methods=['POST'])

@@ -55,12 +55,15 @@ The foundation of any intelligent system is its data. I executed a classic ETL p
 code
 {
   "about": "El Instituto Municipal de Planeación (IMPLAN) de Delicias tiene por objeto fortalecer la planeación participativa estratégica...",
+  
   "contact": {
+  
     "address": "Calle Cuarta Norte N°8, Colonia Centro, Delicias, Chihuahua...",
     "email": "implan@delicias.gob.mx",
     "phone": "639 6882650"
   },
   "documents_and_services": [
+  
     {
       "title": "Plan Municipal de Desarrollo de Delicias 24-27",
       "href": "https://chihuahua.gob.mx/...",

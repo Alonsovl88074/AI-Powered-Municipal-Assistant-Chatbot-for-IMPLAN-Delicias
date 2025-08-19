@@ -49,8 +49,8 @@ The foundation of any intelligent system is its data. I executed a classic ETL p
 **Transform:** Structured the extracted information into a coherent JSON format, creating a domain-specific knowledge base.
 
 **Load:** This JSON context is loaded at runtime and injected into the AI's prompt for every query.
-<details>
 
+<details>
 ## <summary>► Click to see an example of the structured Knowledge Base</summary>
 code
 {

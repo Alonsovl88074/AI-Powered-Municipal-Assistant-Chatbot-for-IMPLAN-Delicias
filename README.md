@@ -160,9 +160,13 @@ Core Competencies & Tech Stack
 ## Category	Technologies & Skills
 
 **Backend Development**	Python, Flask, RESTful API Design
+
 **Frontend Development**	JavaScript (ES6+), HTML5, CSS3, DOM Manipulation, Fetch API (AJAX)
+
 **Artificial Intelligence**	Google Gemini API, Prompt Engineering, Retrieval-Augmented Generation (RAG)
+
 **Systems & Networking**	Windows Server, Firewall Configuration, Port Forwarding, DDNS, SSH
+
 **BI & Data Engineering**	ETL Processes, Data Structuring (JSON), Solution Architecture, Problem Solving
 
 ## Contact

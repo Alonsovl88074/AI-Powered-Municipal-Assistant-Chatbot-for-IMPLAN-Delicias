@@ -163,6 +163,89 @@ Server Hardening: Secured the server by configuring the Windows Firewall to allo
 Environment Management: Resolved dependency conflicts and managed the Python environment to ensure the script runs consistently and reliably as a service.
 Core Competencies & Tech Stack
 
+## 5. Advanced Architecture: From Monolithic Context to a Vector Database
+
+The initial prototype confirmed the viability of the project but quickly revealed a critical bottleneck: providing the entire knowledge base as context for every API call was inefficient, costly, and severely limited by the API's token quota. To evolve this solution into a scalable, production-ready system, I re-architected the data pipeline using a sophisticated **Vector Search** methodology.
+
+This approach transforms the chatbot from a simple Q&A tool into a powerful semantic search engine.
+
+### 1. Data Ingestion and Chunking Strategy
+
+Raw documents (PDF, CSV, JSON) are too large and unstructured to be efficiently processed by an LLM. The first step was to engineer an automated ingestion pipeline using a dedicated Python script (`indexer.py`).
+
+-   **Multi-Format Document Loading:** The pipeline uses libraries like `PyPDF2` and `Pandas` to extract raw text from a variety of file formats dropped into a designated `knowledge_base` folder.
+-   **Intelligent Text Chunking:** I implemented a text splitting strategy using the `langchain` library's `RecursiveCharacterTextSplitter`. Instead of processing entire documents, the text is segmented into smaller, semantically coherent chunks (e.g., paragraphs of 1000 characters with a 150-character overlap). This overlap ensures that the contextual relationship between chunks is preserved.
+
+<details>
+<summary>► Click to see a snippet of the Indexing & Chunking logic</summary>
+
+### indexer.py
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+### Initialize a smart text splitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=150,
+    length_function=len,
+)
+
+### Process each document and fragment its content
+def process_and_store_documents(folder_path='knowledge_base'):
+    all_chunks = []
+    all_metadatas = []
+    
+    for file in os.listdir(folder_path):
+        # ... logic to load raw text from PDF, CSV, etc. ...
+        
+        if content:
+            # The core of the strategy: split large text into small, meaningful chunks
+            chunks = text_splitter.split_text(content)
+            all_chunks.extend(chunks)
+            all_metadatas.extend([{"source": file}] * len(chunks))
+    
+    # ... logic to add chunks to the vector database ...
+</details>
+## 6. Embedding Generation and Vector Storage
+
+Once the knowledge is fragmented, it needs to be converted into a machine-readable format. This is achieved through embeddings.
+Embedding Model: I leveraged Google's embedding-001 model via the GoogleGenerativeAiEmbeddingFunction. Each text chunk is sent to this model, which returns a high-dimensional vector (a list of numbers) representing its semantic meaning.
+Vector Database: The generated vectors, along with their original text content and metadata (like the source document), are stored in a local ChromaDB instance. ChromaDB is a lightweight but powerful open-source vector database that allows for incredibly fast similarity searches. This entire indexing process is executed offline and only needs to be re-run when the source documents are updated.
+
+## 7. Retrieval-Augmented Generation (RAG) in Action
+With the knowledge base indexed, the real-time query process becomes highly efficient:
+User Query Embedding: When a user sends a question, the backend first uses the same Google embedding model to convert the user's question into a vector.
+Semantic Search: This query vector is used to perform a similarity search against the millions of vectors stored in ChromaDB. The database instantly returns the k most semantically relevant text chunks (e.g., the top 7 chunks that are conceptually closest to the user's question).
+Dynamic Prompt Engineering: Instead of sending the entire library of documents, I dynamically construct a highly focused prompt. This prompt includes the original user question and is augmented only with the relevant text chunks retrieved from the vector search.
+Final Answer Generation: This concise, context-rich prompt is sent to the gemini-1.5-flash model, which then generates a precise and accurate answer based only on the provided information, dramatically improving response quality and speed while staying within API limits.
+
+## 8. My Role & Development Process: Architecting an End-to-End AI Solution
+
+I drove this project from concept to production, acting as the sole architect and full-stack developer. My process was iterative, evolving from a simple prototype to a sophisticated RAG-based system, demonstrating my ability to adapt and scale solutions based on technical requirements and performance feedback.
+
+### 1. Data Engineering for AI
+
+My primary role was to architect the data pipeline that fuels the AI. This went beyond simple ETL:
+-   **Strategy:** I identified the limitations of a static JSON context and pivoted to a dynamic, multi-format ingestion pipeline. This strategic shift made the system scalable and easy for non-technical users to update.
+-   **Implementation:** I developed a robust Python script (`indexer.py`) that automates the entire data preparation process: reading diverse file types, performing intelligent text chunking with `Langchain`, and handling failures gracefully through batch processing.
+
+### 2. Backend & RAG Orchestration
+
+I designed the Flask backend to be more than a simple API; it is the central orchestrator of the RAG pipeline. For every user query, the backend executes:
+-   **Query Embedding:** Converts the user's natural language question into a vector.
+-   **Vector Search:** Performs a high-speed semantic search in ChromaDB to retrieve the most relevant context.
+-   **Dynamic Prompting:** Constructs a precise, context-aware prompt on the fly, feeding the LLM only the information it needs to formulate an accurate answer.
+
+### 3. Frontend Development
+
+I built the user-facing chat interface from the ground up using **Vanilla JavaScript, HTML5, and CSS3**. The focus was on creating a responsive, intuitive user experience that integrates seamlessly into the existing IMPLAN website. The asynchronous communication via the `Fetch API` ensures that the interface remains fast and interactive while the backend performs the complex AI processing.
+
+### 4. Full-Cycle Deployment & Systems Administration
+
+A key differentiator of this project was its deployment on a physical, on-premise server, which required a comprehensive DevOps skill set:
+-   **Infrastructure Management:** Configured the server environment, managed Python dependencies, and set up the application to run as a persistent service.
+-   **Network Engineering:** Architected a solution for a dynamic public IP by implementing a **DDNS** service and configuring **Port Forwarding** and **Firewall rules (Windows Defender)** to securely expose the application to the internet.
+-   **Maintenance & Automation:** Created an automated workflow where updating the chatbot's knowledge is as simple as adding a file to a folder and re-running the indexing script.
+  
 ## This project is a practical demonstration of my expertise across the full data and development lifecycle.
 
 ## Category	Technologies & Skills
